@@ -1,0 +1,91 @@
+,Date,Time,League,Home_Team,Away_Team,Odd_Home_Mean,Odd_Away_Mean,Pred_Score_Home,Pred_Score_Away,Predicted_Result,Predicted_Points_Sum,Line,Predicted_Line,Difference,Actual_Score_Home,Actual_Score_Away
+0,15/10/2021,17:00:00,Euroleague,Monaco,Barcelona,3.46,1.32,72,81,Diplo,153,155,Under,2,81,85
+1,15/10/2021,18:00:00,LNB,Chalons-Reims,Le Portel,1.47,2.67,81,77,Assos,158,158.5,Under,0.5,106,73
+2,15/10/2021,18:00:00,LNB,Fos-sur-Mer,Orleans,2.02,1.78,75,77,Diplo,152,155.5,Under,3.5,83,52
+3,15/10/2021,18:00:00,LNB,Roanne,Limoges,1.85,1.95,76,77,Diplo,153,155.5,Under,2.5,70,93
+4,15/10/2021,18:30:00,BBL,Bonn,Frankfurt,1.23,4.13,83,75,Assos,158,157.5,Over,0.5,86,76
+5,15/10/2021,18:30:00,Lega-A,Brindisi,Fortitudo Bologna,1.26,3.77,83,75,Assos,158,158,Under,0,105,93
+6,15/10/2021,18:30:00,LNB,Levallois,Gravelines-Dunkerque,1.16,5.12,87,74,Assos,161,160,Over,1,72,65
+7,15/10/2021,18:30:00,Lega-A,Olimpia Milano,Anadolu Efes,1.65,2.27,81,78,Assos,159,161,Under,2,75,71
+8,16/10/2021,08:00:00,VTB,Astana,Zielona Gora,1.43,2.76,83,78,Assos,161,163.5,Under,2.5,84,70
+9,16/10/2021,10:00:00,Super-Lig,Besiktas,Gaziantep,1.42,2.79,77,73,Assos,150,152,Under,2,68,70
+10,16/10/2021,12:30:00,Super-Lig,Pinar Karsiyaka,Bursaspor,1.2,4.33,80,71,Assos,151,154.5,Under,3.5,76,62
+11,16/10/2021,13:00:00,VTB,Saratov,Tsmoki Minsk,1.17,4.9,90,79,Assos,169,168.5,Over,0.5,95,79
+12,16/10/2021,14:00:00,VTB,Nizhny Novgorod,BC Kalev/Cramo,1.52,2.47,81,77,Assos,158,158.5,Under,0.5,65,71
+13,16/10/2021,15:00:00,Super-Lig,Galatasaray,Bahcesehir Kol.,1.59,2.28,85,84,Assos,169,169.5,Under,0.5,78,85
+14,16/10/2021,16:00:00,BBL,Basketball Braunschweig,Chemnitz,1.6,2.32,86,84,Assos,170,168.5,Over,1.5,84,93
+15,16/10/2021,16:00:00,BBL,Gottingen,Ludwigsburg,2.76,1.43,72,79,Diplo,151,155.5,Under,4.5,78,69
+16,16/10/2021,16:00:00,ACB,Joventut Badalona,MoraBanc Andorra,1.43,2.92,84,79,Assos,163,162.5,Over,0.5,73,79
+17,16/10/2021,16:00:00,ACB,Obradoiro CAB,Murcia,2.07,1.79,83,86,Diplo,169,167.5,Over,1.5,70,104
+18,16/10/2021,16:00:00,Lega-A,Reggiana,Trento,1.82,1.97,80,81,Diplo,161,162.5,Under,1.5,74,78
+19,16/10/2021,17:15:00,Super-Lig,Turk Telekom,Darussafaka,1.55,2.34,77,74,Assos,151,154,Under,3,59,46
+20,16/10/2021,18:00:00,LNB,JL Bourg,Nanterre,1.22,4.36,86,77,Assos,163,163,Under,0,80,87
+21,16/10/2021,18:00:00,Lega-A,Virtus Bologna,Trieste,1.23,4.08,80,73,Assos,153,155.5,Under,2.5,94,79
+22,16/10/2021,18:00:00,BBL,Crailsheim Merlins,Ulm,2.09,1.72,82,84,Diplo,166,166.5,Under,0.5,71,93
+23,16/10/2021,18:30:00,LNB,Le Mans,Pau-Orthez,1.51,2.61,82,78,Assos,160,160.5,Under,0.5,100,106
+24,16/10/2021,18:30:00,BBL,Syntainics MBC,s.Oliver Wurzburg,1.52,2.48,87,85,Assos,172,172.5,Under,0.5,95,73
+25,16/10/2021,18:30:00,ACB,Manresa,Unicaja,2.61,1.52,77,83,Diplo,160,162.5,Under,2.5,85,74
+26,16/10/2021,18:45:00,ACB,San Pablo Burgos,Valencia,2.24,1.67,73,77,Diplo,150,154.5,Under,4.5,65,69
+27,16/10/2021,18:45:00,ACB,Bilbao,Fuenlabrada,1.69,2.22,87,86,Assos,173,172.5,Over,0.5,85,80
+28,17/10/2021,10:00:00,ACB,Gran Canaria,Real Betis,1.32,3.57,84,76,Assos,160,162,Under,2,94,70
+29,17/10/2021,10:30:00,Super-Lig,Tofas,Petkim Spor,1.08,7.44,89,73,Assos,162,162.5,Under,0.5,97,83
+30,17/10/2021,11:00:00,BBL,Bayern,Giessen,1.08,7.54,92,77,Assos,169,168.5,Over,0.5,71,64
+31,17/10/2021,12:30:00,Super-Lig,Afyon Belediye,Buyukcekmece,2.01,1.78,79,81,Diplo,160,160.5,Under,0.5,76,66
+32,17/10/2021,13:00:00,ACB,Breogan,Real Madrid,4.35,1.23,68,80,Diplo,148,155.5,Under,7.5,71,79
+33,17/10/2021,14:30:00,LNB,Monaco,Dijon,1.23,4.38,80,70,Assos,150,152.5,Under,2.5,93,73
+34,17/10/2021,15:00:00,LNB,Strasbourg,Lyon-Villeurbanne,2.87,1.44,77,83,Diplo,160,160.5,Under,0.5,82,74
+35,17/10/2021,15:00:00,BBL,Oldenburg,Alba Berlin,1.83,1.97,80,81,Diplo,161,162.5,Under,1.5,74,92
+36,17/10/2021,15:00:00,ACB,Baskonia,Tenerife,1.44,2.91,83,77,Assos,160,157.5,Over,2.5,65,71
+37,17/10/2021,15:00:00,Lega-A,Olimpia Milano,Venezia,1.26,3.86,82,75,Assos,157,156.5,Over,0.5,93,68
+38,17/10/2021,15:30:00,Basket-League,Panathinaikos,Ionikos,1.03,11.43,90,70,Assos,160,160.5,Under,0.5,92,78
+39,19/10/2021,16:30:00,Champions-League,AEK Athens,Treviso,1.69,2.13,82,81,Assos,163,159.5,Over,3.5,77,92
+40,19/10/2021,16:30:00,Champions-League,Rytas,San Pablo Burgos,3.1,1.36,77,84,Diplo,161,159,Over,2,87,69
+41,19/10/2021,17:00:00,Eurocup,Turk Telekom,Levallois,1.96,1.83,74,75,Diplo,149,151,Under,2,73,65
+42,19/10/2021,17:30:00,Eurocup,Hamburg,Partizan,3.97,1.25,71,80,Diplo,151,154.5,Under,3.5,97,106
+43,19/10/2021,18:00:00,Champions-League,Oldenburg,Besiktas,1.52,2.48,82,78,Assos,160,158,Over,2,81,83
+44,19/10/2021,18:00:00,Eurocup,Trento,Joventut Badalona,2.19,1.67,78,81,Diplo,159,156.5,Over,2.5,56,86
+45,19/10/2021,18:30:00,Champions-League,Dijon,Nizhny Novgorod,1.26,3.79,78,70,Assos,148,149.5,Under,1.5,89,75
+46,19/10/2021,18:30:00,Eurocup,Valencia,Promitheas,1.14,5.64,87,74,Assos,161,159.5,Over,1.5,92,82
+47,19/10/2021,19:00:00,Eurocup,Gran Canaria,Cedevita Olimpija,1.3,3.52,85,77,Assos,162,159.5,Over,2.5,77,79
+48,20/10/2021,16:00:00,Champions-League,VEF Riga,Szombathely,1.64,2.21,84,82,Assos,166,163.5,Over,2.5,74,80
+49,20/10/2021,16:30:00,Eurocup,Lokomotiv Kuban,MoraBanc Andorra,1.46,2.74,85,81,Assos,166,165,Over,1,93,82
+50,20/10/2021,17:00:00,Eurocup,Bursaspor,Virtus Bologna,4.92,1.17,75,86,Diplo,161,160,Over,1,83,101
+51,20/10/2021,17:30:00,Eurocup,Ulm,Buducnost,1.59,2.35,79,76,Assos,155,155.5,Under,0.5,79,86
+52,20/10/2021,18:00:00,Eurocup,JL Bourg,Venezia,1.68,2.19,78,77,Assos,155,154.5,Over,0.5,62,73
+53,20/10/2021,18:15:00,Champions-League,Unicaja,Lavrio,1.12,6.01,87,72,Assos,159,156,Over,3,86,70
+54,20/10/2021,18:30:00,Euroleague,Anadolu Efes,Unics Kazan,1.11,6.89,89,75,Assos,164,161.5,Over,2.5,71,68
+55,21/10/2021,17:00:00,Euroleague,Zalgiris Kaunas,Bayern,2.32,1.63,73,77,Diplo,150,150.5,Under,0.5,73,75
+56,21/10/2021,17:00:00,Euroleague,Maccabi Tel Aviv,Panathinaikos,1.37,3.19,82,77,Assos,159,156.5,Over,2.5,77,73
+57,21/10/2021,18:05:00,Euroleague,Olimpia Milano,Lyon-Villeurbanne,1.21,4.6,83,73,Assos,156,155.5,Over,0.5,73,72
+58,21/10/2021,18:30:00,Euroleague,Real Madrid,Fenerbahce,1.31,3.59,84,77,Assos,161,157.5,Over,3.5,70,69
+59,22/10/2021,18:00:00,LNB,Gravelines-Dunkerque,Strasbourg,1.78,2.03,77,76,Assos,153,155,Under,2,83,95
+60,22/10/2021,18:30:00,LNB,Dijon,Roanne,1.11,6.57,88,75,Assos,163,161.5,Over,1.5,102,77
+61,22/10/2021,18:30:00,BBL,Oldenburg,Hamburg,1.47,2.71,85,80,Assos,165,164.5,Over,0.5,77,79
+62,23/10/2021,15:45:00,LNB,Orleans,Levallois,3.09,1.39,75,81,Diplo,156,156.5,Under,0.5,84,90
+63,23/10/2021,16:00:00,ACB,Basket Zaragoza,Breogan,1.71,2.18,77,76,Assos,153,155.5,Under,2.5,79,75
+64,23/10/2021,16:00:00,BBL,Bayreuth,Crailsheim Merlins,1.54,2.47,85,81,Assos,166,166.5,Under,0.5,74,86
+65,23/10/2021,16:00:00,BBL,Giessen,Syntainics MBC,2.09,1.74,84,87,Diplo,171,172,Under,1,100,81
+66,23/10/2021,16:00:00,ACB,Real Betis,Obradoiro CAB,1.62,2.36,86,82,Assos,168,166.5,Over,1.5,76,87
+67,23/10/2021,17:00:00,Basket-League,AEK Athens,Aris,1.1,6.52,84,70,Assos,154,155.5,Under,1.5,64,63
+68,23/10/2021,18:00:00,LNB,Le Portel,JL Bourg,3.38,1.34,71,78,Diplo,149,152,Under,3,71,54
+69,23/10/2021,18:00:00,LNB,Limoges,Cholet,1.35,3.29,80,73,Assos,153,154.5,Under,1.5,79,91
+70,23/10/2021,18:00:00,LNB,Nanterre,Fos-sur-Mer,1.24,4.21,84,75,Assos,159,157.5,Over,1.5,74,85
+71,23/10/2021,18:30:00,BBL,Basketball Braunschweig,Bamberg,2.51,1.53,83,87,Diplo,170,170,Under,0,90,84
+72,23/10/2021,18:30:00,ACB,MoraBanc Andorra,Valencia,2.57,1.54,78,80,Diplo,158,158.5,Under,0.5,75,76
+73,23/10/2021,18:45:00,ACB,Tenerife,Joventut Badalona,1.39,3.11,83,75,Assos,158,159.5,Under,1.5,72,79
+74,23/10/2021,18:45:00,ACB,Fuenlabrada,Manresa,1.73,2.17,86,85,Assos,171,169.5,Over,1.5,90,82
+75,24/10/2021,10:30:00,ACB,Real Madrid,Gran Canaria,1.16,5.54,85,71,Assos,156,156.5,Under,0.5,70,75
+76,24/10/2021,10:30:00,BBL,Alba Berlin,Gottingen,1.1,6.77,90,75,Assos,165,164,Over,1,59,65
+77,24/10/2021,13:00:00,BBL,Ludwigsburg,Bonn,1.44,2.8,83,77,Assos,160,160,Under,0,91,86
+78,24/10/2021,13:00:00,ACB,Bilbao,San Pablo Burgos,2.51,1.55,78,80,Diplo,158,157.5,Over,0.5,87,81
+79,24/10/2021,15:00:00,BBL,Chemnitz,Ulm,2.44,1.55,83,86,Diplo,169,167.5,Over,1.5,78,81
+80,24/10/2021,16:00:00,Lega-A,Fortitudo Bologna,Olimpia Milano,6.88,1.12,70,84,Diplo,154,157.5,Under,3.5,75,86
+81,24/10/2021,16:15:00,Lega-A,Sassari,Brescia,1.35,3.27,85,78,Assos,163,162.5,Over,0.5,65,76
+82,24/10/2021,16:15:00,Lega-A,Trento,Treviso,1.6,2.36,81,78,Assos,159,158.5,Over,0.5,75,79
+83,24/10/2021,16:15:00,Lega-A,Varese,Reggiana,1.69,2.19,80,77,Assos,157,158.5,Under,1.5,67,106
+84,24/10/2021,16:15:00,ACB,Unicaja,Barcelona,3.44,1.33,72,78,Diplo,150,153.5,Under,3.5,73,75
+85,24/10/2021,16:15:00,ACB,Murcia,Baskonia,2,1.86,79,82,Diplo,161,163,Under,2,80,79
+86,24/10/2021,10:00:00,LNB,Lyon-Villeurbanne,Chalons-Reims,1.09,7.74,89,76,Assos,165,162.5,Over,2.5,94,81
+87,24/10/2021,12:30:00,LNB,Pau-Orthez,Monaco,3.13,1.37,78,84,Diplo,162,162,Under,0,66,74
+88,24/10/2021,15:00:00,Super-Lig,Petkim Spor,Turk Telekom,2.86,1.4,72,77,Diplo,149,150.5,Under,1.5,71,59
+89,24/10/2021,16:15:00,VTB,Zielona Gora,Nizhny Novgorod,1.6,2.35,82,78,Assos,160,158,Over,2,77,95

@@ -1,0 +1,5 @@
+,Date,Time,League,Home_Team,Away_Team,Odd_Home_Mean,Odd_Away_Mean,Pred_Score_Home,Pred_Score_Away,Predicted_Result,Predicted_Points_Sum,Line,Predicted_Line,Difference,Actual_Score_Home,Actual_Score_Away
+5,13/10/2021,18:30:00,Euroleague,Zenit Petersburg,Bayern,1.31,3.58,78,69,Assos,147,147,Under,0,79,71
+6,13/10/2021,18:45:00,Euroleague,Fenerbahce,Unics Kazan,1.51,2.66,78,75,Assos,153,152.5,Over,0.5,80,41
+7,14/10/2021,17:00:00,Euroleague,Alba Berlin,Baskonia,1.7,2.18,75,78,Diplo,153,152.5,Over,0.5,76,80
+8,14/10/2021,17:45:00,Euroleague,Lyon-Villeurbanne,Maccabi Tel Aviv,1.42,2.9,80,75,Assos,155,154.5,Over,0.5,85,93

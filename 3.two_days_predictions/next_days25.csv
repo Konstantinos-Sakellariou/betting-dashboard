@@ -1,0 +1,27 @@
+,Date,Time,Home_Team,Away_Team,Odd_Home_Mean,Odd_Away_Mean,Pred_Score_Home,Pred_Score_Away,Predicted_Result,Predicted_Points_Sum,Line,Predicted_Line,Difference,Actual_Score_Home,Actual_Score_Away
+0,26/10/2021,16:00:00,BC Kalev/Cramo,Oostende,1.57,2.36,83,80,Assos,163,159.5,Over,3.5,85,87
+1,26/10/2021,16:00:00,Lietkabelis,Lokomotiv Kuban,3.45,1.31,82,91,Diplo,173,168.5,Over,4.5,84,85
+2,26/10/2021,16:00:00,Pinar Karsiyaka,Manresa,1.44,2.74,82,77,Assos,159,156.5,Over,2.5,67,72
+3,26/10/2021,16:30:00,Nymburk,Igokea,1.4,2.91,86,80,Assos,166,163,Over,3,86,82
+4,26/10/2021,16:30:00,Promitheas,Gran Canaria,2.04,1.78,81,83,Diplo,164,163.5,Over,0.5,81,85
+5,26/10/2021,17:00:00,Monaco,Crvena zvezda mts,1.41,2.99,77,70,Assos,147,148.5,Under,1.5,70,62
+6,26/10/2021,17:45:00,Fenerbahce,Barcelona,2.47,1.56,72,76,Diplo,148,148.5,Under,0.5,74,76
+7,26/10/2021,18:00:00,Olympiacos,Alba Berlin,1.17,5.21,84,72,Assos,156,155,Over,1,87,83
+8,26/10/2021,18:00:00,Venezia,Bursaspor,1.24,4.03,82,72,Assos,154,152,Over,2,62,70
+9,26/10/2021,18:05:00,Maccabi Tel Aviv,Zalgiris Kaunas,1.25,4.09,82,74,Assos,156,154.5,Over,1.5,76,62
+10,26/10/2021,18:30:00,Strasbourg,Tofas,1.69,2.13,83,81,Assos,164,162,Over,2,74,76
+11,26/10/2021,18:45:00,Bayern,Olimpia Milano,2.27,1.66,74,76,Diplo,150,149.5,Over,0.5,83,77
+12,26/10/2021,19:00:00,Joventut Badalona,Hamburg,1.17,5.05,87,73,Assos,160,159,Over,1,73,56
+13,27/10/2021,16:00:00,Unics Kazan,Baskonia,1.58,2.43,76,72,Assos,148,148,Under,0,83,69
+14,27/10/2021,17:00:00,Buducnost,Valencia,1.81,2.01,79,79,Assos,158,156,Over,2,71,70
+15,27/10/2021,17:00:00,Zenit Petersburg,Real Madrid,2.4,1.6,73,77,Diplo,150,150.5,Under,0.5,68,75
+16,27/10/2021,18:00:00,Cedevita Olimpija,JL Bourg,1.43,2.85,78,73,Assos,151,151.5,Under,0.5,91,79
+17,27/10/2021,18:00:00,Ludwigsburg,Tenerife,2.12,1.7,76,78,Diplo,154,155.5,Under,1.5,80,69
+18,27/10/2021,18:00:00,Lyon-Villeurbanne,CSKA Moscow,2.97,1.41,77,83,Diplo,160,159.5,Over,0.5,70,68
+19,27/10/2021,18:00:00,MoraBanc Andorra,Trento,1.2,4.55,83,73,Assos,156,155,Over,1,85,73
+20,27/10/2021,18:00:00,Panathinaikos,Anadolu Efes,2.77,1.46,77,82,Diplo,159,157.5,Over,1.5,95,69
+21,27/10/2021,18:00:00,Partizan,Turk Telekom,1.15,5.41,79,67,Assos,146,147,Under,1,85,59
+22,27/10/2021,18:30:00,Virtus Bologna,Ulm,1.13,6.05,89,77,Assos,166,166,Under,0,87,76
+23,27/10/2021,18:30:00,Alba Berlin,Bayern,2.21,1.71,78,81,Diplo,159,157.5,Over,1.5,,
+24,27/10/2021,18:30:00,Olympiacos,Fenerbahce,1.61,2.38,78,76,Assos,154,153.5,Over,0.5,,
+25,27/10/2021,18:30:00,Maccabi Tel Aviv,Barcelona,2.64,1.51,74,79,Diplo,153,153.5,Under,0.5,,
