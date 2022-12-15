@@ -1,0 +1,17 @@
+,Date,Time,League,Home_Team,Away_Team,Odd_Home_Mean,Odd_Away_Mean,Pred_Score_Home,Pred_Score_Away,Predicted_Result,Predicted_Points_Sum,Line,Predicted_Line,Difference
+0,2022-05-14,14:00:00,Basket-League,Iraklis,Panathinaikos,9.02,1.06,71.0,83.0,Diplo,154.0,156.0,Under,2.0
+1,2022-05-14,14:00:00,Basket-League,Larisa,Ionikos,1.23,4.02,86.0,77.0,Assos,163.0,163.0,Under,0.0
+2,2022-05-14,14:00:00,Basket-League,Olympiacos,Kolossos Rhodes,1.03,11.13,88.0,69.0,Assos,157.0,157.5,Under,0.5
+3,2022-05-14,14:00:00,Basket-League,PAOK,AEK Athens,1.54,2.43,78.0,73.0,Assos,151.0,154.5,Under,3.5
+4,2022-05-14,14:20:00,LKL,Zalgiris Kaunas,Lietkabelis,1.36,2.94,79.0,72.0,Assos,151.0,152.5,Under,1.5
+5,2022-05-14,15:00:00,Super-Lig,Gaziantep,Darussafaka,1.64,2.19,77.0,75.0,Assos,152.0,154.0,Under,2.0
+6,2022-05-14,16:00:00,ACB,Breogan,Unicaja,1.69,2.18,83.0,81.0,Assos,164.0,165.5,Under,1.5
+7,2022-05-14,17:30:00,Super-Lig,Galatasaray,Bahcesehir Kol.,1.36,3.04,83.0,76.0,Assos,159.0,159.5,Under,0.5
+8,2022-05-14,17:30:00,LNB,Pau-Orthez,Strasbourg,1.88,1.91,82.0,84.0,Diplo,166.0,166.0,Under,0.0
+9,2022-05-14,18:30:00,LNB,Limoges,Monaco,2.54,1.51,78.0,79.0,Diplo,157.0,157.5,Under,0.5
+10,2022-05-14,18:30:00,BBL,Ludwigsburg,Ulm,1.48,2.68,80.0,75.0,Assos,155.0,156.0,Under,1.0
+11,2022-05-14,18:45:00,ACB,Bilbao,Real Betis,1.34,3.24,88.0,80.0,Assos,168.0,167.0,Over,1.0
+12,2022-05-14,18:45:00,ACB,Gran Canaria,Real Madrid,2.05,1.77,80.0,81.0,Diplo,161.0,163.5,Under,2.5
+13,2022-05-14,18:45:00,ACB,Manresa,Barcelona,2.05,1.77,84.0,86.0,Diplo,170.0,169.5,Over,0.5
+14,2022-05-15,13:00:00,BBL,Bonn,Hamburg,1.48,2.61,88.0,84.0,Assos,172.0,171.5,Over,0.5
+15,2022-05-15,14:20:00,LKL,Siauliai,Rytas,3.7,1.25,79.0,86.0,Diplo,165.0,166.25,Under,1.25
