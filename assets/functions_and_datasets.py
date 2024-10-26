@@ -23,6 +23,8 @@ archived_predictions = (pd.read_csv('assets/csv/all_archive.csv', header=0, sep=
                                                                 x.Odd_Home_Mean, x.Odd_Away_Mean))
                         .assign(k_sum_res=lambda x: np.where(x.Actual_Result == x.Predicted_Result, 1, 0))
                         .assign(k_sum_lines=lambda x: np.where(x.Actual_Line == x.Predicted_Line, 1, 0))
+                        .loc[lambda x: x.League != "NBA"]
+                        .reset_index(drop=True)
                         )
 
 recommended_preds_archive = (archived_predictions.loc[archived_predictions.Difference > 2.5]
@@ -117,7 +119,9 @@ predictions_summary_table = pd.concat([dataframe, dataframe_2]).reset_index(drop
 
 predictions_dataset = (pd.read_csv('assets/csv/next_days89.csv', header=0, sep=',', index_col=0)
                        .assign(Predicted_Line=lambda x: np.where(x.Predicted_Points_Sum == x.Line,
-                                                                 'No Pred', x.Predicted_Line)))
+                                                                 'No Pred', x.Predicted_Line))
+                      .loc[lambda x: x.League != "NBA"]
+                        .reset_index(drop=True))
 
 recommended_preds = predictions_dataset.loc[predictions_dataset.Difference > 2.5][['Date', 'Time', 'League',
                                                                                    'Home_Team', 'Away_Team',
