@@ -6,6 +6,12 @@ import dash_table
 from assets.header import dash_header
 from assets.footer import dash_footer
 
+archived_predictions = archived_predictions.loc[lambda x: x.League != "NBA"].reset_index(drop=True)
+predictions_summary_table = predictions_summary_table.loc[lambda x: x.League != "NBA"].reset_index(drop=True)
+predictions_dataset = predictions_dataset.loc[lambda x: x.League != "NBA"].reset_index(drop=True)
+recommended_preds_archive = recommended_preds_archive.loc[lambda x: x.League != "NBA"].reset_index(drop=True)
+
+
 preds_page = html.Div([
 
     dash_header,
