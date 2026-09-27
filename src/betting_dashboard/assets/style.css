@@ -435,3 +435,41 @@ body {
     padding: 14px;
   }
 }
+
+/* ---------- Overview: strategy comparison ---------- */
+.compare-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+.compare-item {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.compare-item-active {
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  background: var(--accent-soft);
+}
+.compare-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.compare-tag {
+  background: var(--accent);
+  color: #111;
+  border-radius: 999px;
+  padding: 0 8px;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+}
+.compare-value {
+  margin-top: 2px;
+  font-size: 0.95rem;
+}

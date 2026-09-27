@@ -8,7 +8,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 from dash import Input, Output, callback, html
 
-from betting_dashboard.analytics.betting import DEFAULT_EDGE_THRESHOLD
+from betting_dashboard.analytics.betting import RECOMMENDED_EDGE
 from betting_dashboard.analytics.grid_query import to_records
 from betting_dashboard.components.grid import (
     FMT_1DP,
@@ -30,6 +30,9 @@ NAME = "Predictions"
 TITLE = "Predictions"
 DESCRIPTION = "Latest published basketball predictions and every graded pick since 2021."
 
+RECOMMENDED_FILTER = {
+    "edge": {"filterType": "number", "type": "greaterThan", "filter": RECOMMENDED_EDGE}
+}
 PICK_LABELS = {"over": "Over", "under": "Under", "home": "Home", "away": "Away"}
 
 
@@ -71,17 +74,29 @@ def layout(**_query: str) -> html.Div:
             ),
             banner,
             html.H2("Latest slate", className="section-title"),
+            html.P(
+                [
+                    "Recommended picks (★) have a totals edge above ",
+                    html.Strong(f"{RECOMMENDED_EDGE:g} points"),
+                    " and are listed first.",
+                ],
+                className="section-sub",
+            ),
             dbc.Row(
-                [dbc.Col(_slate_card(row), xs=12, md=6, xl=4) for row in slate.itertuples()],
+                [
+                    dbc.Col(_slate_card(row), xs=12, md=6, xl=4)
+                    for row in _slate_order(slate).itertuples()
+                ],
                 className="g-3 mb-5",
             ),
             html.H2("Track record", className="section-title"),
             html.P(
                 [
-                    "Every published pick, graded against the final score. Filter any column, "
-                    "or sort by clicking its header. Rows with an edge above ",
-                    html.Strong(f"{DEFAULT_EDGE_THRESHOLD:g} points"),
-                    " were the original 'recommended' picks.",
+                    "Every published pick, graded against the final score. It opens on the "
+                    "recommended picks (edge above ",
+                    html.Strong(f"{RECOMMENDED_EDGE:g} points"),
+                    "); switch the toggle off to see all of them. Filter any column, or sort by "
+                    "clicking its header.",
                 ],
                 className="section-sub",
             ),
@@ -90,8 +105,8 @@ def layout(**_query: str) -> html.Div:
                     dbc.Col(
                         dbc.Switch(
                             id="pred-recommended",
-                            label=f"Only recommended picks (edge > {DEFAULT_EDGE_THRESHOLD:g})",
-                            value=False,
+                            label=f"Only recommended picks (edge > {RECOMMENDED_EDGE:g})",
+                            value=True,
                         ),
                         xs="auto",
                     ),
@@ -117,6 +132,7 @@ def layout(**_query: str) -> html.Div:
                     GRID_COLUMNS,
                     to_records(_archive_rows(preds)),
                     height=620,
+                    filterModel=RECOMMENDED_FILTER,
                     csvExportParams={"fileName": "prediction_archive.csv"},
                 )
             ),
@@ -124,8 +140,15 @@ def layout(**_query: str) -> html.Div:
     )
 
 
+def _slate_order(slate: pd.DataFrame) -> pd.DataFrame:
+    """Recommended picks first, then by kick-off."""
+    return slate.assign(_rec=slate["edge"] > RECOMMENDED_EDGE).sort_values(
+        ["_rec", "date", "tip_off"], ascending=[False, True, True], kind="stable"
+    )
+
+
 def _slate_card(row) -> dbc.Card:
-    strong = row.edge > DEFAULT_EDGE_THRESHOLD
+    strong = row.edge > RECOMMENDED_EDGE
     total_pick = PICK_LABELS.get(row.total_pick) if isinstance(row.total_pick, str) else None
     ml_team = row.home_team if row.ml_pick == "home" else row.away_team
     ml_odds = row.odd_home if row.ml_pick == "home" else row.odd_away
@@ -229,15 +252,7 @@ GRID_COLUMNS = [
     prevent_initial_call=True,
 )
 def toggle_recommended(only_recommended: bool):
-    if only_recommended:
-        return {
-            "edge": {
-                "filterType": "number",
-                "type": "greaterThan",
-                "filter": DEFAULT_EDGE_THRESHOLD,
-            }
-        }
-    return {}
+    return RECOMMENDED_FILTER if only_recommended else {}
 
 
 if settings.allow_csv_export:

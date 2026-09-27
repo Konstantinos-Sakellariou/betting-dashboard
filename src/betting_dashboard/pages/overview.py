@@ -16,10 +16,15 @@ from betting_dashboard.data import store
 PATH = "/"
 NAME = "Overview"
 TITLE = "Track record"
-DESCRIPTION = "How a basketball prediction model performed on 1,292 published picks."
+DESCRIPTION = (
+    "The recommended strategy: basketball totals picks with an edge above "
+    f"{betting.RECOMMENDED_EDGE:g} points, graded against every published prediction."
+)
 
 MIN_LEAGUE_PICKS = 10
-EDGE_MARKS = {v: f"{v:g}" for v in [0, 1, 2, 2.5, 3, 4, 5]}
+EDGE_MARKS = {v: f"{v:g}" for v in [0, 1, 2, 3, 4, 5]} | {
+    betting.RECOMMENDED_EDGE: {"label": "2.5 ★", "style": {"color": ACCENT, "fontWeight": 700}}
+}
 
 
 def layout(**_query: str) -> html.Div:
@@ -60,9 +65,11 @@ def layout(**_query: str) -> html.Div:
                             className="field-label",
                         ),
                         dbc.Tooltip(
-                            "Only count totals picks where the model's predicted total differs "
-                            "from the bookmaker line by more than this many points. 2.5 was the "
-                            "cut-off for the original 'recommended' picks.",
+                            "Only count games where the model's predicted total differs from "
+                            "the bookmaker line by more than this many points. The ★ marks the "
+                            f"recommended cut-off of {betting.RECOMMENDED_EDGE:g}, which the "
+                            "original site used for its 'Recommended Predictions'. Set it to 0 "
+                            "to see every pick.",
                             target="ov-edge-help",
                         ),
                         dcc.Slider(
@@ -70,10 +77,8 @@ def layout(**_query: str) -> html.Div:
                             min=0,
                             max=5,
                             step=0.5,
-                            value=0,
+                            value=betting.RECOMMENDED_EDGE,
                             marks=EDGE_MARKS,
-                            persistence=True,
-                            persistence_type="session",
                         ),
                     ],
                     className="field",
@@ -89,11 +94,17 @@ def layout(**_query: str) -> html.Div:
         [
             page_header(
                 "Model track record",
-                f"{len(preds):,} graded predictions across {n_leagues} competitions, "
-                f"{first:%d %b %Y} – {last:%d %b %Y}. Profit is shown in units at a flat "
-                "1-unit stake.",
+                [
+                    "The recommended strategy is to bet the ",
+                    html.Strong("totals pick"),
+                    " only when the predicted total differs from the bookmaker line by more "
+                    f"than {betting.RECOMMENDED_EDGE:g} points. Every figure is graded from "
+                    f"{len(preds):,} published predictions across {n_leagues} competitions "
+                    f"({first:%d %b %Y} – {last:%d %b %Y}), at a flat 1-unit stake.",
+                ],
             ),
-            card(controls, className="mb-4"),
+            card(controls, className="mb-3"),
+            html.Div(id="ov-compare", className="compare-strip mb-4"),
             dbc.Row(id="ov-kpis", className="g-3 mb-4"),
             dbc.Row(
                 [
@@ -118,7 +129,7 @@ def layout(**_query: str) -> html.Div:
             ),
             card(
                 graph("ov-edge-curve", height=300),
-                title="Does a bigger edge mean better totals picks?",
+                title="Why 2.5 points? Totals ROI by edge threshold",
                 subtitle="Totals ROI for picks above each edge threshold. Bar labels show "
                 "how many picks qualify.",
                 className="mb-4",
@@ -128,19 +139,52 @@ def layout(**_query: str) -> html.Div:
     )
 
 
-def _filtered(market: str, min_edge: float) -> pd.DataFrame:
+def view_label(min_edge: float | None) -> str:
+    if not min_edge:
+        return "All picks"
+    if min_edge == betting.RECOMMENDED_EDGE:
+        return "Recommended strategy"
+    return f"Custom: edge > {min_edge:g}"
+
+
+def _compare_strip(market: str, min_edge: float | None) -> list:
     preds = store.predictions()
-    if market == "total" and min_edge:
-        preds = preds[preds["edge"] > min_edge]
-    return preds
-
-
-@callback(Output("ov-edge", "disabled"), Input("ov-market", "value"))
-def disable_edge_for_moneyline(market: str) -> bool:
-    return market != "total"
+    views = [("Recommended strategy", betting.RECOMMENDED_EDGE), ("All picks", 0)]
+    if min_edge and min_edge != betting.RECOMMENDED_EDGE:
+        views.insert(0, (f"Custom: edge > {min_edge:g}", min_edge))
+    active = view_label(min_edge)
+    items = []
+    for label, edge in views:
+        rec = betting.record(betting.with_min_edge(preds, edge), market)
+        items.append(
+            html.Div(
+                [
+                    html.Div(
+                        [label, html.Span("Showing", className="compare-tag")]
+                        if label == active
+                        else label,
+                        className="compare-label",
+                    ),
+                    html.Div(
+                        [
+                            html.Span(
+                                f"{fmt.signed_pct(rec.roi)} ROI",
+                                className=f"tone-{fmt.tone(rec.roi)} fw-bold",
+                            ),
+                            f" · {fmt.units(rec.units)} · {rec.picks:,} picks · "
+                            f"{fmt.pct(rec.hit_rate)} hit rate",
+                        ],
+                        className="compare-value",
+                    ),
+                ],
+                className="compare-item" + (" compare-item-active" if label == active else ""),
+            )
+        )
+    return items
 
 
 @callback(
+    Output("ov-compare", "children"),
     Output("ov-kpis", "children"),
     Output("ov-cumulative", "figure"),
     Output("ov-leagues", "figure"),
@@ -148,8 +192,8 @@ def disable_edge_for_moneyline(market: str) -> bool:
     Input("ov-market", "value"),
     Input("ov-edge", "value"),
 )
-def update_overview(market: str, min_edge: float):
-    preds = _filtered(market, min_edge or 0)
+def update_overview(market: str, min_edge: float | None):
+    preds = betting.with_min_edge(store.predictions(), min_edge)
     rec = betting.record(preds, market)
 
     hit_vs_be = rec.hit_rate - rec.break_even if rec.decided else float("nan")
@@ -191,11 +235,20 @@ def update_overview(market: str, min_edge: float):
     ]
 
     footnote = (
-        "Totals picks are priced at an assumed 1.90 because the archive holds no over/under "
-        "prices for the prediction window. Moneyline picks use the recorded market-average "
-        "odds. Pushes return the stake and are excluded from hit rate and ROI."
+        "The edge filter selects games, so it applies to both markets; the recommended strategy "
+        "is the totals market. Totals picks are priced at an assumed 1.90 because the archive "
+        "holds no over/under prices for the prediction window. Moneyline picks use the recorded "
+        "market-average odds. Pushes return the stake and are excluded from hit rate and ROI. "
+        f"The recommended sample is {_recommended_sample():,} totals picks, which is small: "
+        "treat the edge as promising, not proven."
     )
-    return kpis, _cumulative_figure(preds, market), _league_figure(preds, market), footnote
+    return (
+        _compare_strip(market, min_edge),
+        kpis,
+        _cumulative_figure(preds, market),
+        _league_figure(preds, market),
+        footnote,
+    )
 
 
 @callback(Output("ov-edge-curve", "figure"), Input("ov-market", "value"))
@@ -207,6 +260,11 @@ def update_edge_curve(_market: str):
             x=[f"> {t:g}" for t in curve["threshold"]],
             y=curve["roi"],
             marker_color=[WIN if v > 0 else LOSS for v in curve["roi"].fillna(0)],
+            marker_line_color=[
+                ACCENT if t == betting.RECOMMENDED_EDGE else "rgba(0,0,0,0)"
+                for t in curve["threshold"]
+            ],
+            marker_line_width=3,
             text=[f"{n} picks" for n in curve["picks"]],
             textposition="outside",
             cliponaxis=False,
@@ -218,7 +276,21 @@ def update_edge_curve(_market: str):
     fig.update_yaxes(tickformat="+.0%", title="ROI")
     fig.update_xaxes(title="Edge (points)")
     fig.add_hline(y=0, line_color=BORDER)
+    fig.add_annotation(
+        x=f"> {betting.RECOMMENDED_EDGE:g}",
+        y=1.08,
+        yref="paper",
+        text="★ Recommended",
+        showarrow=False,
+        font={"color": ACCENT, "size": 12},
+    )
+    fig.update_layout(margin={"t": 40})
     return fig
+
+
+def _recommended_sample() -> int:
+    recommended = betting.with_min_edge(store.predictions(), betting.RECOMMENDED_EDGE)
+    return betting.record(recommended, "total").picks
 
 
 def _cumulative_figure(preds: pd.DataFrame, market: str) -> go.Figure:

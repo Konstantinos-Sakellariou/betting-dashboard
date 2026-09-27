@@ -21,7 +21,9 @@ Market = Literal["ml", "total"]
 MARKETS: dict[Market, str] = {"total": "Totals (over/under)", "ml": "Moneyline"}
 
 TOTALS_ASSUMED_ODDS = 1.90
-DEFAULT_EDGE_THRESHOLD = 2.5  # the legacy "recommended picks" cut-off
+# The recommended strategy: only bet when the predicted total differs from the line by
+# more than this many points. It was the original app's cut-off, and the archive bears it out.
+RECOMMENDED_EDGE = 2.5
 
 
 def grade_predictions(df: pd.DataFrame) -> pd.DataFrame:
@@ -125,6 +127,11 @@ def cumulative_units(df: pd.DataFrame, market: Market) -> pd.DataFrame:
     )
     daily["cumulative_units"] = daily["units"].cumsum()
     return daily
+
+
+def with_min_edge(df: pd.DataFrame, min_edge: float | None) -> pd.DataFrame:
+    """Games whose edge is strictly above `min_edge`. 0 or None keeps every game."""
+    return df[df["edge"] > min_edge] if min_edge else df
 
 
 def edge_curve(df: pd.DataFrame, thresholds: list[float]) -> pd.DataFrame:

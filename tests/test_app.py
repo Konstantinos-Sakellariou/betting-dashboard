@@ -38,10 +38,29 @@ def test_python_source_is_not_served_as_an_asset(client):
 
 
 def test_overview_callback():
-    kpis, cumulative, leagues, footnote = overview.update_overview("total", 2.5)
+    compare, kpis, cumulative, leagues, footnote = overview.update_overview("total", 2.5)
     assert len(kpis) == 4
+    assert len(compare) == 2  # recommended vs all picks
     assert isinstance(cumulative, go.Figure) and isinstance(leagues, go.Figure)
     assert "1.90" in footnote
+
+
+def test_overview_defaults_to_recommended_strategy():
+    import dash
+
+    from betting_dashboard.analytics.betting import RECOMMENDED_EDGE
+
+    layout = json.dumps(overview.layout(), cls=PlotlyJSONEncoder)
+    assert f'"value": {RECOMMENDED_EDGE}' in layout
+    assert overview.view_label(RECOMMENDED_EDGE) == "Recommended strategy"
+    assert overview.view_label(0) == "All picks"
+    assert len(overview.update_overview("total", 3.5)[0]) == 3  # custom view added
+    assert dash.page_registry
+
+
+def test_predictions_default_to_recommended():
+    assert predictions.toggle_recommended(True) == predictions.RECOMMENDED_FILTER
+    assert predictions.toggle_recommended(False) == {}
 
 
 def test_explorer_callbacks_handle_empty_selection():

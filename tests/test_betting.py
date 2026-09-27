@@ -4,12 +4,14 @@ import pandas as pd
 import pytest
 
 from betting_dashboard.analytics.betting import (
+    RECOMMENDED_EDGE,
     TOTALS_ASSUMED_ODDS,
     cumulative_units,
     edge_curve,
     grade_predictions,
     record,
     record_by,
+    with_min_edge,
 )
 
 
@@ -107,3 +109,10 @@ def test_edge_curve_uses_strict_threshold():
     df = _archive([{"edge": 2.5}, {"edge": 3.0}])
     curve = edge_curve(df, [2.5])
     assert curve.picks.tolist() == [1]
+
+
+def test_with_min_edge_zero_keeps_no_pick_games():
+    df = _archive([{"edge": 0.0, "total_pick": None}, {"edge": 3.0}])
+    assert len(with_min_edge(df, 0)) == 2
+    assert len(with_min_edge(df, None)) == 2
+    assert with_min_edge(df, RECOMMENDED_EDGE).edge.tolist() == [3.0]

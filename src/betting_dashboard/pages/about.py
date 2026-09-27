@@ -28,6 +28,15 @@ European and NBA basketball games. From each predicted score it derived two pick
 Every published pick is kept and graded against the final score. Nothing is removed after
 the fact.
 
+### The recommended strategy
+
+Bet the **totals pick only when the edge is above {betting.RECOMMENDED_EDGE:g} points**, meaning the
+predicted total differs from the bookmaker line by more than that. The original site used this
+cut-off for its "Recommended Predictions". In the archive it is the only slice that made money:
+smaller edges lose and the biggest edges are too few to trust. The overview opens on this
+strategy and shows it next to the full record, so both are always visible. It is still a small
+sample, so treat it as a promising edge, not a proven one.
+
 ### How picks are graded
 
 | Term | Meaning |
