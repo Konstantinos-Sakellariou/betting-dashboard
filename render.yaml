@@ -13,5 +13,3 @@ services:
         value: Courtside Analytics
       - key: WEB_CONCURRENCY
         value: "2"
-      - key: CONTACT_EMAIL
-        sync: false # optional; set in the Render dashboard if you want an email link

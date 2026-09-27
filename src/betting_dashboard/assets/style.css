@@ -473,3 +473,19 @@ body {
   margin-top: 2px;
   font-size: 0.95rem;
 }
+
+/* ---------- About: author ---------- */
+.author-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.author-link {
+  border-color: var(--border);
+  color: var(--text);
+}
+.author-link:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--text);
+}

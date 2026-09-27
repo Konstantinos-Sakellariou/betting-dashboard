@@ -8,6 +8,7 @@ from pathlib import Path
 import dash
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, State, html
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from betting_dashboard.components.layout import footer, navbar, page_header
 from betting_dashboard.components.theme import register_template
@@ -81,6 +82,7 @@ def create_app() -> Dash:
             name=page.NAME,
             title=f"{page.TITLE} · {settings.app_name}",
             description=page.DESCRIPTION,
+            image="og-image.png",
             layout=page.layout,
             order=order,
         )
@@ -103,6 +105,10 @@ def create_app() -> Dash:
     )
     def toggle_nav(_n, is_open):
         return not is_open
+
+    # Render terminates TLS at its proxy; trust X-Forwarded-* so absolute URLs (the social
+    # preview image) come out as https.
+    app.server.wsgi_app = ProxyFix(app.server.wsgi_app, x_for=1, x_proto=1, x_host=1)
 
     @app.server.get("/healthz")
     def healthz():

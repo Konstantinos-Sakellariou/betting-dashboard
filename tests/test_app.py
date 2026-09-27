@@ -112,3 +112,27 @@ def test_all_pages_registered():
     paths = {p["path"] for p in dash.page_registry.values()}
     assert {p.PATH for p in PAGES} <= paths
     assert app.title
+
+
+def test_social_preview_uses_forwarded_https(client):
+    html = client.get(
+        "/", headers={"X-Forwarded-Proto": "https", "X-Forwarded-Host": "courtside.example"}
+    ).get_data(as_text=True)
+    assert 'property="og:image" content="https://courtside.example/assets/og-image.png' in html
+    assert client.get("/assets/og-image.png").status_code == 200
+
+
+def test_footer_has_contact_links(client):
+    from betting_dashboard.components.layout import contact_links
+
+    labels = [label for label, _href, _icon in contact_links()]
+    assert labels == ["Portfolio", "LinkedIn", "GitHub", "Email"]
+
+
+def test_empty_env_hides_a_contact_link(monkeypatch):
+    from betting_dashboard.config import load_settings
+
+    monkeypatch.setenv("CONTACT_EMAIL", "")
+    assert load_settings().contact_email is None
+    monkeypatch.delenv("CONTACT_EMAIL")
+    assert load_settings().contact_email

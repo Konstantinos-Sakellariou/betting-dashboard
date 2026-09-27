@@ -7,7 +7,7 @@ from dash import dcc, html
 
 from betting_dashboard.analytics import betting
 from betting_dashboard.analytics import games as g
-from betting_dashboard.components.layout import card, page_header
+from betting_dashboard.components.layout import card, contact_links, icon, page_header
 from betting_dashboard.config import settings
 from betting_dashboard.data import store
 
@@ -61,6 +61,36 @@ features.
 """
 
 
+def _author_card() -> dbc.Card:
+    buttons = [
+        dbc.Button(
+            [icon(ic, className="me-2"), label],
+            href=href,
+            external_link=True,
+            target=None if href.startswith("mailto:") else "_blank",
+            color="secondary",
+            outline=True,
+            size="sm",
+            className="author-link",
+        )
+        for label, href, ic in contact_links()
+    ]
+    return card(
+        [
+            html.P(
+                [
+                    html.Strong(settings.author_name),
+                    " built the prediction model, the data pipeline and this dashboard. "
+                    "Get in touch to talk about it or about data work in general.",
+                ],
+            ),
+            html.Div(buttons, className="author-links"),
+        ],
+        title="About the author",
+        className="mb-4",
+    )
+
+
 def layout(**_query: str) -> html.Div:
     games = store.games()
     preds = store.predictions()
@@ -98,6 +128,7 @@ def layout(**_query: str) -> html.Div:
                     dbc.Col(card(dcc.Markdown(METHOD, className="prose")), lg=7),
                     dbc.Col(
                         [
+                            _author_card(),
                             card(
                                 [
                                     html.P(

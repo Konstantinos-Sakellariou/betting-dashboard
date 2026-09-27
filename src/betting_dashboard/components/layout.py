@@ -56,15 +56,29 @@ def navbar() -> dbc.Navbar:
     )
 
 
+def contact_links() -> list[tuple[str, str, str]]:
+    """(label, href, icon) for each configured way to reach the author."""
+    links = [
+        ("Portfolio", settings.portfolio_url, "bi-globe2"),
+        ("LinkedIn", settings.linkedin_url, "bi-linkedin"),
+        ("GitHub", settings.github_url, "bi-github"),
+        (
+            "Email",
+            f"mailto:{settings.contact_email}" if settings.contact_email else None,
+            "bi-envelope",
+        ),
+    ]
+    return [(label, href, ic) for label, href, ic in links if href]
+
+
+def _external(label: str, href: str, ic: str) -> html.A:
+    new_tab = {} if href.startswith("mailto:") else {"target": "_blank", "rel": "noopener"}
+    return html.A([icon(ic, className="me-1"), label], href=href, **new_tab)
+
+
 def footer() -> html.Footer:
-    contact = [html.A([icon("bi-github", className="me-1"), "GitHub"], href=settings.github_url)]
-    if settings.contact_email:
-        contact.append(
-            html.A(
-                [icon("bi-envelope", className="me-1"), "Email"],
-                href=f"mailto:{settings.contact_email}",
-            )
-        )
+    contact = [_external(*link) for link in contact_links()]
+    contact.append(_external("Source code", settings.repo_url, "bi-code-slash"))
     return html.Footer(
         dbc.Container(
             [
@@ -79,7 +93,7 @@ def footer() -> html.Footer:
                     className="disclaimer",
                 ),
                 html.Div(
-                    [html.Span(f"© {settings.app_name}"), *contact],
+                    [html.Span(f"Built by {settings.author_name}"), *contact],
                     className="footer-links",
                 ),
             ],
