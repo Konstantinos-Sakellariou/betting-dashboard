@@ -8,8 +8,8 @@ Status key: ⬜ not started · 🟨 in progress · ✅ done
 |---|---|---|---|---|
 | 1 | [Model lab page](#1-model-lab-page) | ⬜ | L (2–3 sessions) | Nothing |
 | 2 | ["How this was built" case study](#2-how-this-was-built-case-study) | ⬜ | M | Review the draft; add it to the portfolio site |
-| 3 | [Keep-alive ping for the free tier](#3-keep-alive-ping-for-the-free-tier) | ⬜ | S | The live URL, set as a repository variable |
-| 4 | [Link it everywhere (demo GIF, live link, promo copy)](#4-link-it-everywhere) | ⬜ | M | The live URL; post on LinkedIn; update the portfolio site |
+| 3 | [Keep-alive ping for the free tier](#3-keep-alive-ping-for-the-free-tier) | ✅ | S | Nothing (defaults to the live URL) |
+| 4 | [Link it everywhere (demo GIF, live link, promo copy)](#4-link-it-everywhere) | 🟨 | M | Post on LinkedIn when ready (drafts in `docs/PROMO.md`); add the portfolio repo to a session for the project card |
 | 5 | [Privacy-friendly visitor stats](#5-privacy-friendly-visitor-stats) | ⬜ | S | A free GoatCounter account (site code) |
 
 ---
@@ -90,6 +90,8 @@ Read these first. They are the house rules that every task below assumes.
 
 ## 3. Keep-alive ping for the free tier
 
+> **Done (2026-09-27):** `.github/workflows/keepalive.yml`. It defaults to https://betting-dashboard.onrender.com, so no repository variable is needed. Set `SITE_URL` only to target another URL, and pause it by disabling the workflow. It passes `actionlint`.
+
 **Why.** Render's free web services spin down after about 15 minutes without traffic. The next visitor then waits roughly 30–60 seconds for a cold start, which is a bad first impression when a recruiter clicks the link.
 
 **What to build**
@@ -114,6 +116,8 @@ Read these first. They are the house rules that every task below assumes.
 ---
 
 ## 4. Link it everywhere
+
+> **Mostly done (2026-09-27):** a live-demo badge and link at the top of the README, `docs/demo.gif` (30 s, 2.7 MB, recorded by `scripts/record_demo.py` using lossless Chrome screencast frames), and drafts in `docs/PROMO.md`. **Nothing has been posted.** Still open: the owner decides whether and when to post, and the portfolio-site card needs the `konstantinos-sakellariou.github.io` repository added to a session.
 
 **Why.** A great project nobody sees doesn't help. The social preview card already exists (`assets/og-image.png`). What's missing is a live link, a moving demo, and copy the owner can post.
 

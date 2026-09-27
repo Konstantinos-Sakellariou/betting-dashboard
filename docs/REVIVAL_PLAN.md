@@ -67,7 +67,7 @@ Severity: 🔴 blocks sharing · 🟠 wrong or misleading output · 🟡 quality
 - 🟡 All Python code lives in `assets/`. Dash serves that folder publicly as static files, so **the source code is downloadable from the live site** (`/assets/functions_and_datasets.py`). Dash also auto-loads any `.css`/`.js` it finds there.
 
 **Correctness (data and metrics)**
-- 🟠 **European game dates are corrupted.** The data was parsed month-first whenever the day was ≤ 12, so 6 Oct 2010 became `2010-06-10`. Every `Season` label derived from those dates is wrong too (~15% of European games fall outside their labelled season). NBA dates are fine. I verified the fix against the original `all_dataset.csv` in history: after swapping, 24,203 of 24,203 European rows match exactly.
+- 🟠 **European game dates are corrupted.** The data was parsed month-first whenever the day was ≤ 12, so 6 Oct 2010 became `2010-06-10`. Every `Season` label derived from those dates is wrong too (18% of European games carry the wrong season label; 37% have the wrong date). NBA dates are fine. I verified the fix against the original `all_dataset.csv` in history: after swapping, 24,203 of 24,203 European rows match exactly.
 - 🟠 The summary table reports "Accuracy Results" for *All Predictions* using the **line** accuracy variable (`[accuracy_result_rec, accuracy_line_all]`).
 - 🟠 **Filters don't combine.** On the Data page, picking a league throws away the season filter, and picking a team throws away both. The same happens in the scatter explorer. The UI even says "!! Do Refresh the page after each selection".
 - 🟠 **Pushes count as losses.** When the total lands exactly on the line (15 archive games) the old code labels it "Under". It is a push: the stake comes back.
@@ -374,3 +374,4 @@ No questions are open right now.
 | 2026-09-27 | Contact links (email, GitHub, LinkedIn, portfolio) in the footer and About page; social preview image on every page; ProxyFix so preview URLs are https behind Render | Owner request; links shared on LinkedIn get a proper preview card |
 | 2026-09-27 | One gunicorn worker with 4 threads (was 2 workers) | A worker with the data loaded peaks at about 250 MB, so two workers would sit at the 512 MB free-tier limit |
 | 2026-09-27 | Portfolio tasks moved to `docs/BACKLOG.md` with self-contained prompts | Owner request |
+| 2026-09-27 | Keep-alive workflow defaults to the live URL; demo GIF from lossless screencast frames; promo copy kept as drafts | The owner asked for nothing to be posted. The screencast GIF is 2.7 MB against 10 MB from Playwright's lossy video |
