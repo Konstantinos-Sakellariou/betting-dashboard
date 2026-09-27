@@ -286,8 +286,17 @@ These are shown in the UI, not hidden. Being upfront about them is what makes th
 | **2. UI rebuild** | Six pages from §5, design system, responsive layout, no third-party images | Every page renders with no console errors and has no horizontal overflow at phone width (checked at 390 px) | ✅ Done |
 | **3. Ship** | Dockerfile, render.yaml, CI workflow, README, DATA.md | `docker build` + container smoke test pass, CI green | ✅ Done: image built and smoke-tested locally. CI runs on the first push/PR. Creating the Render service needs the owner's account |
 | **4. Live pipeline** | Ingestion for fixtures/odds/results, retrained model, scheduled refresh | New predictions appear daily without manual steps. Archive auto-grades | ⏸ Deferred: the owner chose a showcase first. Restart from the original code if it turns up (§9) |
-| **5. Polish and growth** | Custom domain, analytics, OG/social preview image, light theme, "share this pick" links, smaller Docker image, Lighthouse audit against the §5.3 targets | – | Backlog |
-| **6. Model quality** | Proper backtest harness, calibration plots, closing-line value (CLV) tracking, per-league models | Published backtest report in the app | Backlog |
+| **5. Portfolio polish** | Social preview image and author/contact links (done). Next: see §8.1 | – | In progress |
+| **6. Model lab** | Proper backtest harness, calibration plots, closing-line value (CLV) tracking, per-league models | Published backtest report in the app | Backlog |
+
+### 8.1 Portfolio enhancements, in suggested order
+
+1. **Model lab page (the biggest win).** The original model code is lost, so retrain a transparent model on the 35k-game dataset with walk-forward validation. Publish a backtest, calibration plot and feature importance on a new page. This shows the ML work itself, which recruiters care about most, and it also produces the Phase 4 model if live picks ever return.
+2. **"How this was built" case study.** Tell the rescue story on a page or in a blog post on the portfolio site: deleted data recovered from git, the date-swap bug, pushes graded as losses, and why ROI beats accuracy. Debugging and judgement stories read well to hiring managers.
+3. **Keep-alive ping.** Render's free tier sleeps after 15 minutes idle, so a recruiter's first visit waits about 30 seconds. A GitHub Actions cron that hits `/healthz` every 10 minutes during European and US working hours avoids that and stays within the free instance hours.
+4. **Link it everywhere.** Add a project card with the social preview image to the portfolio site, a featured link on LinkedIn, and a short demo GIF in the README.
+5. **Privacy-friendly visitor stats** (e.g. GoatCounter, free, no cookies) to see whether the links get clicked.
+6. **Accessibility/performance audit** against the §5.3 targets, plus an optional light theme.
 
 ---
 
@@ -338,13 +347,12 @@ The repo contains the *outputs* of a pipeline (feature-rich game rows and predic
 | 3 | Name | **Courtside Analytics** |
 | 4 | Include NBA picks in the record? | **Yes**, every league is included |
 | 5 | Licence | **MIT** for the code (`LICENSE`) |
-| 6 | Default view | **The recommended strategy** (totals picks with edge > 2.5) is what the Overview and the Predictions track record open on. The full record is one click away and always shown alongside |
+| 6 | Audience | **Portfolio / showcase** |
+| 7 | Hosting | **Render free tier** (cold starts accepted) |
+| 8 | Contact | **Email, GitHub, LinkedIn and portfolio site**, in the footer and on an "About the author" card. Each is a config value, and setting one to empty hides it |
+| 9 | Default view | **The recommended strategy** (totals picks with edge > 2.5) is what the Overview and the Predictions track record open on. The full record is one click away and always shown alongside |
 
-**Still open** (the working assumption stands until answered)
-
-1. **Audience:** recruiters/portfolio, friends who bet, or a public product? This decides how much Phase 5 is worth. *Assumed:* portfolio/showcase.
-2. **Hosting budget:** is Render's free tier (cold starts) OK, or ~$7/month for always-on? *Assumed:* free.
-3. **Contact:** show an email? *Assumed:* GitHub link only, unless `CONTACT_EMAIL` is set.
+No questions are open right now.
 
 ---
 
@@ -361,3 +369,4 @@ The repo contains the *outputs* of a pipeline (feature-rich game rows and predic
 | 2026-09-27 | Bootstrap, Bootstrap Icons and Inter are vendored under `assets/vendor` | No third-party requests (privacy, speed, works behind strict networks) |
 | 2026-09-27 | Overview and the Predictions track record open on the recommended strategy (edge > 2.5), with the all-picks figures always shown next to it | Owner request. It is the strategy the original site published. Showing the full record alongside keeps it honest |
 | 2026-09-27 | MIT licence; name "Courtside Analytics" | Owner decisions |
+| 2026-09-27 | Contact links (email, GitHub, LinkedIn, portfolio) in the footer and About page; social preview image on every page; ProxyFix so preview URLs are https behind Render | Owner request; links shared on LinkedIn get a proper preview card |
