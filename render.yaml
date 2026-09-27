@@ -1,0 +1,15 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# In Render: New + > Blueprint > pick this repo. Deploys automatically on every push to main.
+services:
+  - type: web
+    name: betting-dashboard
+    runtime: docker
+    plan: free # "starter" removes cold starts
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /healthz
+    envVars:
+      - key: APP_NAME
+        value: Courtside Analytics
+      - key: WEB_CONCURRENCY
+        value: "2"
