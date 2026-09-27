@@ -1,6 +1,6 @@
 # Revival Plan: Betting Dashboard
 
-**Status:** Phases 0–3 are done on branch `claude/zen-sagan-i79dgv`. Phases 4–6 need decisions from the owner (see [§11](#11-open-questions-for-the-owner)).
+**Status:** Phases 0–3 are done on branch `claude/zen-sagan-i79dgv`. The owner chose a showcase first, so Phase 4 (live predictions) is deferred. Phases 5–6 are the backlog. See [§11](#11-owner-decisions-and-open-questions).
 **Last updated:** 2026-09-27
 
 This document audits the parked project, sets out what it should become, and lays out the steps to get there. It is meant to stay accurate: when the plan changes, update this file in the same commit.
@@ -19,7 +19,7 @@ This document audits the parked project, sets out what it should become, and lay
 8. [Roadmap](#8-roadmap)
 9. [Phase 4: bringing the prediction pipeline back](#9-phase-4-bringing-the-prediction-pipeline-back)
 10. [Risks, legal and responsible-gambling notes](#10-risks-legal-and-responsible-gambling-notes)
-11. [Open questions for the owner](#11-open-questions-for-the-owner)
+11. [Owner decisions and open questions](#11-owner-decisions-and-open-questions)
 12. [Decision log](#12-decision-log)
 
 ---
@@ -200,7 +200,7 @@ When the pipeline returns (Phase 4), a scheduled job writes new Parquet files, a
 
 | Route | Page | Replaces | Purpose |
 |---|---|---|---|
-| `/` | **Overview** | – | Track record at a glance: KPI cards (picks, hit rate, ROI, units won) for totals and moneyline, a cumulative-profit chart, per-league performance, an "edge threshold" slider |
+| `/` | **Overview** | – | Track record, opening on the **recommended strategy** (totals, edge > 2.5): a comparison strip (recommended vs all picks), KPI cards (picks, hit rate vs break-even, units, ROI), cumulative profit, ROI by competition, and an edge slider plus an edge-threshold chart that shows why 2.5 |
 | `/predictions` | **Predictions** | Predictions | Latest slate (labelled with its date, plus a "paused" banner while stale) and the full graded archive with win/loss/push highlighting and filters |
 | `/explorer` | **League explorer** | Home (left) | Scatter of any two *meaningful* features with filters that actually combine, colour by league/outcome, plus scoring-trend and home-advantage charts |
 | `/teams` | **Teams** | Home (right) | Pick a team: record, points for/against by season, home/away split, over/under record against the line, recent games |
@@ -285,7 +285,7 @@ These are shown in the UI, not hidden. Being upfront about them is what makes th
 | **1. Foundation** | Package layout, pyproject/uv, cleaning + analytics modules with tests, Parquet artefacts, build script | `uv run pytest` green, `scripts/build_data.py` reproduces `data/processed/` byte-for-byte | ✅ Done |
 | **2. UI rebuild** | Six pages from §5, design system, responsive layout, no third-party images | Every page renders with no console errors and has no horizontal overflow at phone width (checked at 390 px) | ✅ Done |
 | **3. Ship** | Dockerfile, render.yaml, CI workflow, README, DATA.md | `docker build` + container smoke test pass, CI green | ✅ Done: image built and smoke-tested locally. CI runs on the first push/PR. Creating the Render service needs the owner's account |
-| **4. Live pipeline** | Ingestion for fixtures/odds/results, retrained model, scheduled refresh | New predictions appear daily without manual steps. Archive auto-grades | ⏳ Needs owner input (§9, §11) |
+| **4. Live pipeline** | Ingestion for fixtures/odds/results, retrained model, scheduled refresh | New predictions appear daily without manual steps. Archive auto-grades | ⏸ Deferred: the owner chose a showcase first. Restart from the original code if it turns up (§9) |
 | **5. Polish and growth** | Custom domain, analytics, OG/social preview image, light theme, "share this pick" links, smaller Docker image, Lighthouse audit against the §5.3 targets | – | Backlog |
 | **6. Model quality** | Proper backtest harness, calibration plots, closing-line value (CLV) tracking, per-league models | Published backtest report in the app | Backlog |
 
@@ -327,18 +327,24 @@ The repo contains the *outputs* of a pipeline (feature-rich game rows and predic
 
 ---
 
-## 11. Open questions for the owner
+## 11. Owner decisions and open questions
 
-I made a working choice for each so work could go ahead. Change any of them if they don't fit.
+**Answered (2026-09-27)**
 
-1. **Pipeline code.** Do you still have the scraper and model code (the notebooks/scripts that produced `next_daysNN.csv`)? *Working assumption:* no, so Phase 4 plans a rebuild.
-2. **Live predictions: yes or no?** Should the shared version show live daily picks (Phase 4), or is a polished historical and track-record showcase enough for now? *Working assumption:* showcase first, live later.
-3. **Name and branding.** The git history contains a `neurocastlogo.jpg`. Is "Neurocast" the brand you want? *Working assumption:* the neutral name "Courtside Analytics", changeable with the `APP_NAME` env var.
-4. **NBA in the track record.** The old app hid NBA picks from all prediction stats. *Working assumption:* include every league, with a league filter, so the record is complete and honest.
-5. **Audience.** Recruiters/portfolio, friends who bet, or a public product? This affects how much we invest in Phase 5 (domain, analytics, SEO).
-6. **Licence.** Should the repo carry an open-source licence (e.g. MIT for code, with the data excluded)? *Working assumption:* none added. It's your call.
-7. **Hosting budget.** Is Render's free tier (with cold starts) OK, or is ~$7/month for always-on acceptable?
-8. **Contact.** Show an email on the About page? *Working assumption:* only a GitHub link unless `CONTACT_EMAIL` is set.
+| # | Question | Answer |
+|---|---|---|
+| 1 | Is the scraper/model code still around? | Not to hand; the owner may find it. If it turns up, Phase 4 starts from it (§9) instead of a rebuild |
+| 2 | Live predictions or showcase? | **Showcase** for now. Phase 4 is deferred |
+| 3 | Name | **Courtside Analytics** |
+| 4 | Include NBA picks in the record? | **Yes**, every league is included |
+| 5 | Licence | **MIT** for the code (`LICENSE`) |
+| 6 | Default view | **The recommended strategy** (totals picks with edge > 2.5) is what the Overview and the Predictions track record open on. The full record is one click away and always shown alongside |
+
+**Still open** (the working assumption stands until answered)
+
+1. **Audience:** recruiters/portfolio, friends who bet, or a public product? This decides how much Phase 5 is worth. *Assumed:* portfolio/showcase.
+2. **Hosting budget:** is Render's free tier (cold starts) OK, or ~$7/month for always-on? *Assumed:* free.
+3. **Contact:** show an email? *Assumed:* GitHub link only, unless `CONTACT_EMAIL` is set.
 
 ---
 
@@ -353,3 +359,5 @@ I made a working choice for each so work could go ahead. Change any of them if t
 | 2026-09-27 | Removed all third-party player photos | Copyright/likeness |
 | 2026-09-27 | dash-ag-grid replaces DataTable | Better UX, server-side row model, active development |
 | 2026-09-27 | Bootstrap, Bootstrap Icons and Inter are vendored under `assets/vendor` | No third-party requests (privacy, speed, works behind strict networks) |
+| 2026-09-27 | Overview and the Predictions track record open on the recommended strategy (edge > 2.5), with the all-picks figures always shown next to it | Owner request. It is the strategy the original site published. Showing the full record alongside keeps it honest |
+| 2026-09-27 | MIT licence; name "Courtside Analytics" | Owner decisions |

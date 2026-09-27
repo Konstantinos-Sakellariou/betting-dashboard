@@ -4,7 +4,8 @@
 
 This dashboard shows how a basketball score-prediction model performed across EuroLeague, EuroCup, the NBA and nine European domestic leagues. It includes 35,000 historical games you can explore.
 
-- **The track record is honest.** Every one of the 1,292 published picks is graded against the final score, and each market shows hit rate, profit in units and ROI next to its break-even point.
+- **The recommended strategy comes first.** Betting the totals pick only when the model's predicted total differs from the line by more than 2.5 points returned **+3.5% ROI (+6.3 units) over 180 picks**. The overview opens on it.
+- **The track record is honest.** All 1,292 published picks are graded against the final score, and the full record (−4.1% ROI on every totals pick) is always shown next to the strategy, each against its break-even point.
 - **Predictions show each game's forecast.** You see the predicted score, the over/under pick against the bookmaker line, and the moneyline pick.
 - **The league explorer** covers scoring trends, home advantage, and a scatter plot of any two variables across 11 leagues and 11 seasons (2010–2021).
 - **Team profiles** show a team's record, points for and against by season, home/away splits, and over/under history.
@@ -66,6 +67,10 @@ The repo includes a [Render Blueprint](render.yaml). In Render, choose **New + �
 
 - [docs/REVIVAL_PLAN.md](docs/REVIVAL_PLAN.md): audit of the legacy app, target architecture, roadmap and open questions.
 - [docs/DATA.md](docs/DATA.md): data dictionary, cleaning rules and metric definitions.
+
+## License
+
+The code is released under the [MIT License](LICENSE). The historical odds and results in `data/` are included for research and education only.
 
 ## Disclaimer
 
