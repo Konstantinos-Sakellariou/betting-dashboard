@@ -67,6 +67,7 @@ The repo includes a [Render Blueprint](render.yaml). In Render, choose **New + â
 
 - [docs/REVIVAL_PLAN.md](docs/REVIVAL_PLAN.md): audit of the legacy app, target architecture, roadmap and open questions.
 - [docs/DATA.md](docs/DATA.md): data dictionary, cleaning rules and metric definitions.
+- [docs/BACKLOG.md](docs/BACKLOG.md): next tasks, each with a ready-to-use prompt for Claude.
 
 ## License
 

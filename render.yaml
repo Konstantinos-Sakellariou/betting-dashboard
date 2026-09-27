@@ -11,5 +11,8 @@ services:
     envVars:
       - key: APP_NAME
         value: Courtside Analytics
+      # 512 MB on the free plan: one worker (~250 MB) with threads. Raise on a bigger plan.
       - key: WEB_CONCURRENCY
-        value: "2"
+        value: "1"
+      - key: GUNICORN_THREADS
+        value: "4"

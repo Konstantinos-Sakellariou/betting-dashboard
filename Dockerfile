@@ -20,9 +20,12 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
     DATA_DIR=/app/data/processed \
     PORT=8050 \
-    WEB_CONCURRENCY=2
+    WEB_CONCURRENCY=1 \
+    GUNICORN_THREADS=4
 USER app
 EXPOSE 8050
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s \
     CMD python -c "import os,urllib.request; urllib.request.urlopen(f'http://127.0.0.1:{os.environ[\"PORT\"]}/healthz', timeout=4)"
-CMD ["sh", "-c", "exec gunicorn betting_dashboard.app:server --bind 0.0.0.0:${PORT} --workers ${WEB_CONCURRENCY} --timeout 60 --access-logfile -"]
+# One worker (~250 MB with the data loaded) plus threads fits Render's 512 MB free tier;
+# two workers would sit right at the limit and risk out-of-memory restarts.
+CMD ["sh", "-c", "exec gunicorn betting_dashboard.app:server --bind 0.0.0.0:${PORT} --workers ${WEB_CONCURRENCY} --threads ${GUNICORN_THREADS} --timeout 60 --access-logfile -"]

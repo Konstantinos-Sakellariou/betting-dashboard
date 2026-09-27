@@ -291,6 +291,8 @@ These are shown in the UI, not hidden. Being upfront about them is what makes th
 
 ### 8.1 Portfolio enhancements, in suggested order
 
+Each item below is written up as a ready-to-run task, with a Claude prompt, in [BACKLOG.md](BACKLOG.md).
+
 1. **Model lab page (the biggest win).** The original model code is lost, so retrain a transparent model on the 35k-game dataset with walk-forward validation. Publish a backtest, calibration plot and feature importance on a new page. This shows the ML work itself, which recruiters care about most, and it also produces the Phase 4 model if live picks ever return.
 2. **"How this was built" case study.** Tell the rescue story on a page or in a blog post on the portfolio site: deleted data recovered from git, the date-swap bug, pushes graded as losses, and why ROI beats accuracy. Debugging and judgement stories read well to hiring managers.
 3. **Keep-alive ping.** Render's free tier sleeps after 15 minutes idle, so a recruiter's first visit waits about 30 seconds. A GitHub Actions cron that hits `/healthz` every 10 minutes during European and US working hours avoids that and stays within the free instance hours.
@@ -370,3 +372,5 @@ No questions are open right now.
 | 2026-09-27 | Overview and the Predictions track record open on the recommended strategy (edge > 2.5), with the all-picks figures always shown next to it | Owner request. It is the strategy the original site published. Showing the full record alongside keeps it honest |
 | 2026-09-27 | MIT licence; name "Courtside Analytics" | Owner decisions |
 | 2026-09-27 | Contact links (email, GitHub, LinkedIn, portfolio) in the footer and About page; social preview image on every page; ProxyFix so preview URLs are https behind Render | Owner request; links shared on LinkedIn get a proper preview card |
+| 2026-09-27 | One gunicorn worker with 4 threads (was 2 workers) | A worker with the data loaded peaks at about 250 MB, so two workers would sit at the 512 MB free-tier limit |
+| 2026-09-27 | Portfolio tasks moved to `docs/BACKLOG.md` with self-contained prompts | Owner request |
