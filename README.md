@@ -1,6 +1,11 @@
 # Courtside Analytics: basketball betting dashboard
 
+[![Live demo](https://img.shields.io/badge/live_demo-betting--dashboard.onrender.com-f59e0b?style=flat)](https://betting-dashboard.onrender.com)
 [![CI](https://github.com/Konstantinos-Sakellariou/betting-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/Konstantinos-Sakellariou/betting-dashboard/actions/workflows/ci.yml)
+
+**Live demo: [betting-dashboard.onrender.com](https://betting-dashboard.onrender.com)**
+
+![A 30-second tour: the recommended strategy against all picks, predictions, the league explorer and a team profile](docs/demo.gif)
 
 This dashboard shows how a basketball score-prediction model performed across EuroLeague, EuroCup, the NBA and nine European domestic leagues. It includes 35,000 historical games you can explore.
 
@@ -10,8 +15,6 @@ This dashboard shows how a basketball score-prediction model performed across Eu
 - **The league explorer** covers scoring trends, home advantage, and a scatter plot of any two variables across 11 leagues and 11 seasons (2010–2021).
 - **Team profiles** show a team's record, points for and against by season, home/away splits, and over/under history.
 - **Game data** is a searchable table of every game, with odds and lines. Rows load from the server as you scroll, and you can export to CSV.
-
-![Overview](docs/screenshots/overview.png)
 
 | Predictions | Explorer | Teams |
 |---|---|---|
@@ -62,6 +65,10 @@ docs/               revival plan, data dictionary, screenshots
 ## Deployment
 
 The repo includes a [Render Blueprint](render.yaml). In Render, choose **New + → Blueprint** and select this repository. It builds the Dockerfile, checks `/healthz`, and redeploys on every push to `main`. Any other container host works too. The app listens on `$PORT`.
+
+**Keep-alive.** Render's free plan puts the service to sleep after about 15 idle minutes, and the next visitor waits 30–60 s for it to wake. The [keep-alive workflow](.github/workflows/keepalive.yml) pings `/healthz` every 10 minutes from 06:00 to 21:59 UTC. To point it at another URL, set a `SITE_URL` repository variable; to pause it, disable the workflow in the Actions tab. GitHub switches off scheduled workflows after 60 days without repository activity, so re-enable it there if that happens.
+
+**Demo GIF.** `docs/demo.gif` is recorded by [`scripts/record_demo.py`](scripts/record_demo.py). Start the app, run `uv run --group demo playwright install chromium` once, then run `uv run --group demo python scripts/record_demo.py`.
 
 ## Documentation
 
